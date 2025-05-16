@@ -6,7 +6,7 @@
 
 # Service account credentials
 **/keys/
-**/keys/*.json
+**/keys/service-account.json
 
 # VSCode settings (optional)
 .vscode/
@@ -25,3 +25,5 @@ yarn-error.log*
 
 # Build artifacts (if you add them later)
 frontend/build/
+Backend/keys/service-account.json
+
