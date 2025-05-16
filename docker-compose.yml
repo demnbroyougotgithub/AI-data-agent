@@ -1,0 +1,45 @@
+services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: businessdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./data/sample_data.sql:/docker-entrypoint-initdb.d/sample_data.sql
+
+    
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    depends_on:
+      - db 
+    ports:
+      - "5000:5000"
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS: /app/keys/service-account.json
+      DB_HOST: db
+      DB_USER: user
+      DB_PASSWORD: password
+      DB_NAME: businessdb
+    volumes:
+      - ./backend/keys:/app/keys
+    env_file: 
+      - .env
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
+  ollama-data:

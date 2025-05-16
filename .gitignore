@@ -1,0 +1,27 @@
+# Node dependencies
+**/node_modules/
+
+# Environment variables
+.env
+
+# Service account credentials
+**/keys/
+**/keys/*.json
+
+# VSCode settings (optional)
+.vscode/
+
+# Docker volumes (if local only)
+pgdata/
+
+# OS metadata
+.DS_Store
+
+# Logs and temp files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build artifacts (if you add them later)
+frontend/build/
